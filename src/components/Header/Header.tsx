@@ -54,7 +54,7 @@ export const Header = () => {
           {ADD_BUTTON}
         </Button>
       </Box>
-      <SearchBar />
+      {/* <SearchBar /> */}
       <FilterButtonsGroup tags={tagsArray} isFilter={true} />
       {isModalOpen &&
         createPortal(

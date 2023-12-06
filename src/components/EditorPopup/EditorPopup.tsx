@@ -84,7 +84,6 @@ export const EditorPopup = ({
           onChange={(e) => {
             setDescriptionValue(e.target.value);
             setTags(findTags(e.target.value));
-            console.log(e.target.selectionStart);
           }}
         />
         <Typography sx={descriptionText}>

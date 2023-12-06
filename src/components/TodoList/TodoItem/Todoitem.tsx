@@ -22,7 +22,11 @@ import { createPortal } from "react-dom";
 import { FilterButtonsGroup } from "../../Header/FilterButtonsGroup/FilterButtonsGroup";
 import { EditorPopup } from "../../EditorPopup/EditorPopup";
 import { useAppDispatch } from "../../../store/hooks";
-import { removeTodo, setTodoContent } from "../../../store/slices/todos";
+import {
+  removeTodo,
+  setTodoContent,
+  setTodoStatus,
+} from "../../../store/slices/todos";
 import { EDIT_POPUP_BUTTON_TITLE, EDIT_POPUP_TITLE } from "./constants";
 
 type TTodoitem = {
@@ -71,6 +75,15 @@ export const Todoitem = ({
     dispatch(removeTodo(id));
   };
 
+  const toggleCompleted = (value: boolean) => {
+    dispatch(
+      setTodoStatus({
+        id: id,
+        completed: value,
+      })
+    );
+  };
+
   return (
     <Box sx={todoItem}>
       <Box sx={todoItemWrapper}>
@@ -79,6 +92,9 @@ export const Todoitem = ({
           checked={isCompleted}
           icon={<Checkboxicon />}
           checkedIcon={<CheckboxActiveicon />}
+          onClick={() => {
+            toggleCompleted(!isCompleted);
+          }}
         />
         <Typography sx={todoTitle}>{title}</Typography>
         <Box sx={todoWrapper}>
