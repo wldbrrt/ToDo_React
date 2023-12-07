@@ -8,11 +8,12 @@ import {
 import { SearchBar } from "./SearchBar/SearchBar";
 import { addButton, header, title, titleWrapper } from "./style";
 import { FilterButtonsGroup } from "./FilterButtonsGroup/FilterButtonsGroup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { EditorPopup } from "../EditorPopup/EditorPopup";
 import { useAppDispatch, useTodos } from "../../store/hooks";
 import { addTodo } from "../../store/slices/todos";
+import { storeTodosInLocalStorage } from "../../utils/storeInLocalstorage";
 
 export const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -20,7 +21,7 @@ export const Header = () => {
   const [descriptionValue, setDescriptionValue] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
 
-  const { id, todos } = useTodos();
+  const { id, todos, count } = useTodos();
 
   const tagsList = new Set(todos.map((el) => el.tags).flat(1));
   const tagsArray = Array.from(tagsList);
@@ -41,6 +42,12 @@ export const Header = () => {
     setTitleValue("");
     setTags([]);
   };
+
+  useEffect(() => {
+    if (!count && id > 1) storeTodosInLocalStorage({ id, count, todos });
+    if (!count) return;
+    storeTodosInLocalStorage({ id, count, todos });
+  }, [id, count, todos]);
 
   const toggleModal = () => {
     setIsModalOpen((value) => !value);

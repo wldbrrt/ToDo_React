@@ -45,10 +45,27 @@ const todosSlice = createSlice({
       state.todos[index].content = action.payload.content;
       state.todos[index].tags = action.payload.tags;
     },
+    updateTodos(
+      state,
+      action: PayloadAction<{
+        count: number;
+        id: number;
+        todos: TTodo[];
+      }>
+    ) {
+      state.id = action.payload.id;
+      state.count = action.payload.count;
+      state.todos = action.payload.todos;
+    },
   },
 });
 
-export const { addTodo, removeTodo, setTodoStatus, setTodoContent } =
-  todosSlice.actions;
+export const {
+  addTodo,
+  removeTodo,
+  setTodoStatus,
+  setTodoContent,
+  updateTodos,
+} = todosSlice.actions;
 
 export default todosSlice.reducer;
