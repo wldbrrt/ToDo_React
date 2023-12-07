@@ -46,6 +46,10 @@ export const todoTitle = {
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
   },
+  "&:before": {
+    content: "'Title'",
+    color: mainColors.grey,
+  },
 };
 
 export const todoDescription = {
@@ -63,6 +67,10 @@ export const todoDescription = {
   },
   "& .MuiOutlinedInput-notchedOutline": {
     border: "none",
+  },
+  "&:before": {
+    content: "'Description'",
+    color: mainColors.grey,
   },
 };
 

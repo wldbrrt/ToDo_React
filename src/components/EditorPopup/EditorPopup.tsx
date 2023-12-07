@@ -73,7 +73,7 @@ export const EditorPopup = ({
         <Typography sx={editorTitle}>{title}</Typography>
         <TextField
           sx={todoTitle}
-          placeholder={POPUP_NOTE_TITLE}
+          /* placeholder={POPUP_NOTE_TITLE} */
           value={titleValue}
           onChange={(e) => setTitleValue(e.target.value)}
         />
