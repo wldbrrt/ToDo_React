@@ -5,18 +5,15 @@ import {
   todoEdit,
   todoItem,
   todoTitle,
-  todoToggle,
   todoWrapper,
   todoContent,
   todoItemWrapper,
-  todoContentActive,
-  todoToggleActive,
 } from "./style";
 import { Checkboxicon } from "../../icons/checkbox";
 import { CheckboxActiveicon } from "../../icons/checkboxActive";
 import { EditIconButton } from "../../icons/EditIconButton";
 import { DeleteIconButton } from "../../icons/DeleteIconButton";
-import { ToggleNoteIconButton } from "../../icons/toggleNoteIconButton";
+
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { FilterButtonsGroup } from "../../Header/FilterButtonsGroup/FilterButtonsGroup";
@@ -44,7 +41,6 @@ export const Todoitem = ({
   id,
   tags,
 }: TTodoitem) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [titleValue, setTitleValue] = useState<string>(title);
   const [descriptionValue, setDescriptionValue] = useState<string>(content);
@@ -52,10 +48,6 @@ export const Todoitem = ({
 
   const toggleModal = () => {
     setIsModalOpen((value) => !value);
-  };
-
-  const toggleDescriptionVisibility = () => {
-    setIsVisible((value) => !value);
   };
 
   const dispatch = useAppDispatch();
@@ -96,7 +88,7 @@ export const Todoitem = ({
             toggleCompleted(!isCompleted);
           }}
         />
-        <Typography sx={todoTitle}>{title}</Typography>
+        <Typography sx={todoTitle(isCompleted)}>{title}</Typography>
         <Box sx={todoWrapper}>
           <IconButton sx={todoEdit} onClick={toggleModal}>
             <EditIconButton />
@@ -106,16 +98,9 @@ export const Todoitem = ({
           </IconButton>
         </Box>
       </Box>
-      <Typography sx={isVisible ? todoContentActive : todoContent}>
-        {content}
-      </Typography>
+      <Typography sx={todoContent(isCompleted)}>{content}</Typography>
       <FilterButtonsGroup tags={tags} />
-      <IconButton
-        sx={isVisible ? todoToggleActive : todoToggle}
-        onClick={toggleDescriptionVisibility}
-      >
-        <ToggleNoteIconButton />
-      </IconButton>
+
       {isModalOpen &&
         createPortal(
           <EditorPopup

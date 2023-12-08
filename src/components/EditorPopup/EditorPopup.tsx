@@ -56,7 +56,7 @@ export const EditorPopup = ({
     const wordsArray = text.split(" ");
     return wordsArray.map((el, index) => (
       <React.Fragment key={index}>
-        {index > 0 && " "} {/* Add space if not the first word */}
+        {index > 0 && " "}
         {el[0] === "#" ? (
           <span style={{ color: mainColors.green }}>{el}</span>
         ) : (

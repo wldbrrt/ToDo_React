@@ -19,24 +19,32 @@ export const todoCheckbox = {
   height: "50px",
 };
 
-export const todoTitle = {
-  color: mainColors.white,
+export const todoTitle = (isCompleted = false) => {
+  const styles = {
+    color: mainColors.white,
+    minWidth: "10%",
+    textDecoration: "none",
+  };
+
+  if (isCompleted) styles.textDecoration = "line-through";
+
+  return styles;
 };
 
-export const todoContent = {
-  color: mainColors.white,
-  height: "0px",
-  overflow: "hidden",
-  padding: "0 40px",
-  transition: "300ms",
-};
+export const todoContent = (isCompleted = false) => {
+  const styles = {
+    color: mainColors.white,
+    padding: "10px 40px",
+    height: "fit-content",
+    overflow: "hidden",
+    transition: "300ms",
+    width: "100%",
+    textDecoration: "none",
+  };
 
-export const todoContentActive = {
-  color: mainColors.white,
-  padding: "10px 40px",
-  height: "fit-content",
-  overflow: "hidden",
-  transition: "300ms",
+  if (isCompleted) styles.textDecoration = "line-through";
+
+  return styles;
 };
 
 export const todoWrapper = {};
