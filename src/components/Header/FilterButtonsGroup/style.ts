@@ -6,16 +6,33 @@ export const buttonGroup = {
   width: "80%",
 };
 
-export const button = {
-  background: "none",
-  border: `${mainColors.green} solid 2px`,
-  borderRadius: "15px",
-  color: mainColors.white,
-  fontSize: "10px",
-  padding: "0 0 0 0 ",
-  "&:active": {
-    background: mainColors.green,
-  },
+export const button = (isActive: boolean, isFilter = false) => {
+  const styles = {
+    background: "none",
+    border: `${mainColors.green} solid 2px`,
+    borderRadius: "15px",
+    color: mainColors.white,
+    fontSize: "10px",
+    padding: "0 0 0 0 ",
+    "&:active": {
+      background: "none",
+    },
+    "&:hover": {
+      background: mainColors.green,
+    },
+  };
+
+  if (isActive) {
+    styles.background = mainColors.green;
+  }
+
+  if (isFilter) {
+    styles["&:hover"] = {
+      background: "none",
+    };
+  }
+
+  return styles;
 };
 
 export const activeButton = {

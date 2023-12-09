@@ -27,7 +27,7 @@ export const FilterButtonsGroup = ({
         return (
           <Button
             key={ind}
-            sx={isActive ? activeButton : button}
+            sx={button(isActive)}
             onClick={() => {
               if (isActive) {
                 const newFilterArray = filterArray.filter((str) => str !== el);
@@ -56,7 +56,7 @@ export const FilterButtonsGroup = ({
   ) : (
     <Box sx={buttonGroup}>
       {tags.map((el, ind) => (
-        <Button key={ind} sx={button}>
+        <Button key={ind} sx={button(false, true)}>
           {el}
         </Button>
       ))}
