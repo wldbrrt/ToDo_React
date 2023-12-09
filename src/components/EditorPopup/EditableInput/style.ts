@@ -84,6 +84,7 @@ export const text = {
   wordWrap: "break-word",
   maxHeight: "150px",
   overflowY: "auto",
+  cursor: "text",
 
   "::-webkit-scrollbar": {
     width: "30px",

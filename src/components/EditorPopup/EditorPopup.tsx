@@ -1,19 +1,16 @@
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import {
   editorWrapper,
   editorBackground,
   editorTitle,
-  todoTitle,
-  todoDescription,
   editorAddButton,
-  descriptionText,
+  closeButton,
 } from "./style";
 import { POPUP_NOTE_DESCRIPTION, POPUP_NOTE_TITLE } from "./constants";
 import { FilterButtonsGroup } from "../Header/FilterButtonsGroup/FilterButtonsGroup";
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../store/hooks";
 import React from "react";
-import { mainColors } from "../../ui/palette";
 import { EditableInput } from "./EditableInput/EditableInput";
 import { getFiltredTags } from "../../utils/getFiltredTags";
 type EditorPopupProps = {
@@ -53,29 +50,17 @@ export const EditorPopup = ({
       <Box sx={editorBackground}></Box>
       <Box sx={editorWrapper}>
         <Typography sx={editorTitle}>{title}</Typography>
-        {/* <TextField
-          sx={todoTitle}
-          value={titleValue}
-          onChange={(e) => setTitleValue(e.target.value)}
-        /> */}
+        <Button sx={closeButton} onClick={(e) => closeHandler(false)}>
+          X
+        </Button>
+
         <EditableInput
           title={POPUP_NOTE_TITLE}
           value={titleValue}
           setTags={setTags}
           setDescriptionValue={setTitleValue}
         />
-        {/* <TextField
-          sx={todoDescription}
-          placeholder={POPUP_NOTE_DESCRIPTION}
-          value={descriptionValue}
-          onChange={(e) => {
-            setDescriptionValue(e.target.value);
-            setTags(getFiltredTags(e.target.value));
-          }}
-        />
-        <Typography sx={descriptionText}>
-          {hightlightText(descriptionValue).map((el) => el)}
-        </Typography> */}
+
         <EditableInput
           title={POPUP_NOTE_DESCRIPTION}
           value={descriptionValue}

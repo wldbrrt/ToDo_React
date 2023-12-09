@@ -26,7 +26,7 @@ export const editorWrapper = {
   flexDirection: "column",
   alignItems: "center",
   gap: "40px",
-  paddingBottom: "30px",
+  padding: "30px 0",
 };
 
 export const editorTitle = {
@@ -98,5 +98,17 @@ export const editorAddButton = {
   color: mainColors.white,
   "&:hover": {
     background: mainColors.green,
+  },
+};
+
+export const closeButton = {
+  position: "absolute",
+  color: mainColors.green,
+  fontSize: "40px",
+  right: "2%",
+  top: "10px",
+  "&:hover": {
+    color: mainColors.white,
+    background: "none",
   },
 };
