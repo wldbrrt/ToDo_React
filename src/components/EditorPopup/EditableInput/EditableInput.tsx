@@ -70,6 +70,9 @@ export const EditableInput = ({
               setDescriptionValue(e.target.value);
               if (isExtenderEditor) setTags(getFiltredTags(e.target.value));
             }}
+            onFocus={(e) =>
+              e.target.setSelectionRange(value.length, value.length)
+            }
           />
         </Box>
       ) : (
