@@ -1,8 +1,9 @@
-import { Box } from "@mui/material";
-import { todoList } from "./style";
+import { Box, Typography } from "@mui/material";
+import { todoList, noResulttitle } from "./style";
 import { Todoitem } from "./TodoItem/Todoitem";
 import { useTodos } from "../../store/hooks";
 import { useSearchParams } from "react-router-dom";
+import { TODOLIST_NO_CONTENT } from "./TodoItem/constants";
 
 export const TodoList = () => {
   const [searchParams] = useSearchParams();
@@ -20,6 +21,9 @@ export const TodoList = () => {
 
   return (
     <Box sx={todoList}>
+      {!data.length && (
+        <Typography sx={noResulttitle}>{TODOLIST_NO_CONTENT}</Typography>
+      )}
       {data.reverse().map((todo) => (
         <Todoitem
           key={todo.id}

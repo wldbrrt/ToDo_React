@@ -28,3 +28,9 @@ export const todoList = {
     background: mainColors.green,
   },
 };
+
+export const noResulttitle = {
+  textAlign: "center",
+  color: mainColors.white,
+  fontSize: "40px",
+};
