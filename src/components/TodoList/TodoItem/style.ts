@@ -26,7 +26,10 @@ export const todoTitle = (isCompleted = false) => {
     textDecoration: "none",
   };
 
-  if (isCompleted) styles.textDecoration = "line-through";
+  if (isCompleted) {
+    styles.textDecoration = "line-through";
+    styles.color = mainColors.darkGrey;
+  }
 
   return styles;
 };
@@ -42,7 +45,10 @@ export const todoContent = (isCompleted = false) => {
     textDecoration: "none",
   };
 
-  if (isCompleted) styles.textDecoration = "line-through";
+  if (isCompleted) {
+    styles.textDecoration = "line-through";
+    styles.color = mainColors.darkGrey;
+  }
 
   return styles;
 };
