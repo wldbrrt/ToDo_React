@@ -12,7 +12,7 @@ export const editorBackground = {
 
 export const editorWrapper = {
   width: " 50%",
-  height: "80%",
+  minHeight: "80%",
   background: mainColors.backgroundBlue,
   position: "absolute",
   top: "50%",
@@ -26,6 +26,7 @@ export const editorWrapper = {
   flexDirection: "column",
   alignItems: "center",
   gap: "40px",
+  paddingBottom: "30px",
 };
 
 export const editorTitle = {
@@ -88,8 +89,11 @@ export const descriptionText = {
 
 export const editorAddButton = {
   borderRadius: "20px",
+  minWidth: "85px",
   fontSize: "40px",
   padding: "5 5",
+  position: "relative",
+  marginTop: "auto",
   background: mainColors.green,
   color: mainColors.white,
   "&:hover": {

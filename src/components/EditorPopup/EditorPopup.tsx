@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { useDebounce } from "../../store/hooks";
 import React from "react";
 import { mainColors } from "../../ui/palette";
+import { EditableInput } from "./EditableInput/EditableInput";
+import { getFiltredTags } from "../../utils/getFiltredTags";
 type EditorPopupProps = {
   closeHandler: (value: boolean) => void;
   title: string;
@@ -42,58 +44,50 @@ export const EditorPopup = ({
   const debouncedValue = useDebounce(descriptionValue, 600);
   const [editorTags, setEditorTags] = useState<string[]>(tags);
 
-  const findTags = (string: string) => {
-    const wordsArray = string.split(" ");
-    const tagsArr = wordsArray.filter((el) => el[0] === "#");
-    return Array.from(new Set(tagsArr));
-  };
-
   useEffect(() => {
-    setEditorTags(findTags(descriptionValue));
+    setEditorTags(getFiltredTags(descriptionValue));
   }, [debouncedValue]);
-
-  const hightlightText = (text: string) => {
-    const wordsArray = text.split(" ");
-    return wordsArray.map((el, index) => (
-      <React.Fragment key={index}>
-        {index > 0 && " "}
-        {el[0] === "#" ? (
-          <span style={{ color: mainColors.green }}>{el}</span>
-        ) : (
-          el
-        )}
-      </React.Fragment>
-    ));
-  };
 
   return (
     <>
       <Box sx={editorBackground}></Box>
       <Box sx={editorWrapper}>
         <Typography sx={editorTitle}>{title}</Typography>
-        <TextField
+        {/* <TextField
           sx={todoTitle}
-          /* placeholder={POPUP_NOTE_TITLE} */
           value={titleValue}
           onChange={(e) => setTitleValue(e.target.value)}
+        /> */}
+        <EditableInput
+          title={POPUP_NOTE_TITLE}
+          value={titleValue}
+          setTags={setTags}
+          setDescriptionValue={setTitleValue}
         />
-        <TextField
+        {/* <TextField
           sx={todoDescription}
           placeholder={POPUP_NOTE_DESCRIPTION}
           value={descriptionValue}
           onChange={(e) => {
             setDescriptionValue(e.target.value);
-            setTags(findTags(e.target.value));
+            setTags(getFiltredTags(e.target.value));
           }}
         />
         <Typography sx={descriptionText}>
           {hightlightText(descriptionValue).map((el) => el)}
-        </Typography>
+        </Typography> */}
+        <EditableInput
+          title={POPUP_NOTE_DESCRIPTION}
+          value={descriptionValue}
+          setTags={setTags}
+          setDescriptionValue={setDescriptionValue}
+          isExtenderEditor={true}
+        />
         <FilterButtonsGroup tags={editorTags} />
         <Button
           sx={editorAddButton}
           onClick={() => {
-            setTags(findTags(descriptionValue));
+            setTags(getFiltredTags(descriptionValue));
             onClickHandler();
             closeHandler(false);
           }}
