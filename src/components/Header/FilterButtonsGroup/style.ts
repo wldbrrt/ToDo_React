@@ -13,7 +13,8 @@ export const button = (isActive: boolean, isFilter = false) => {
     borderRadius: "15px",
     color: mainColors.white,
     fontSize: "10px",
-    padding: "0 0 0 0 ",
+    padding: "0 10 0 10 ",
+    minWidth: "10px",
     "&:active": {
       background: "none",
     },
