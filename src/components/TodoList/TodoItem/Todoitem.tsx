@@ -25,6 +25,8 @@ import {
   setTodoStatus,
 } from "../../../store/slices/todos";
 import { EDIT_POPUP_BUTTON_TITLE, EDIT_POPUP_TITLE } from "./constants";
+import React from "react";
+import { mainColors } from "../../../ui/palette";
 
 type TTodoitem = {
   title: string;
@@ -76,6 +78,27 @@ export const Todoitem = ({
     );
   };
 
+  const hightlightText = (text: string) => {
+    const separatedlinebreaks = text
+      .split("")
+      .map((el) => {
+        if (el === "\n") return ` ${el} `;
+        return el;
+      })
+      .join("");
+
+    const wordsArray = separatedlinebreaks.split(" ");
+    return wordsArray.map((el, index) => {
+      return (
+        <React.Fragment key={index}>
+          {index > 0 && " "}
+          {el === "\n" && <br />}
+          {el}
+        </React.Fragment>
+      );
+    });
+  };
+
   return (
     <Box sx={todoItem}>
       <Box sx={todoItemWrapper}>
@@ -98,7 +121,9 @@ export const Todoitem = ({
           </IconButton>
         </Box>
       </Box>
-      <Typography sx={todoContent(isCompleted)}>{content}</Typography>
+      <Typography sx={todoContent(isCompleted)}>
+        {hightlightText(content).map((el) => el)}
+      </Typography>
       <FilterButtonsGroup tags={tags} />
 
       {isModalOpen &&
