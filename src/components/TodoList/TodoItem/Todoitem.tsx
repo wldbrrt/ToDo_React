@@ -52,8 +52,6 @@ export const Todoitem = ({
   const [descriptionValue, setDescriptionValue] = useState<string>(content);
   const [tagsArr, setTagsArr] = useState<string[]>(tags);
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>();
-  const windowSize = useScreenSize();
-  console.log(windowSize);
 
   const toggleModal = () => {
     setIsModalOpen((value) => !value);

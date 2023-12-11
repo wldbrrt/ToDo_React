@@ -5,4 +5,5 @@ export const mainColors = {
   backgroundBlue: "#1D1D2A",
   grey: "#C8C8C8",
   darkGrey: "#5f5f5f",
+  disabled: "#37b96b82",
 };

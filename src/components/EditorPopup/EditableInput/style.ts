@@ -5,14 +5,16 @@ export const componentWrapper = {
   minHeight: "100px",
   position: "relative",
   display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
+  gap: "10px",
 };
 
 export const inputTitle = {
   color: mainColors.grey,
   width: "80%",
+  top: "-20px",
+  position: "absolute",
   paddingBottom: "10px",
   fontSize: "1.6rem",
 };
@@ -23,7 +25,7 @@ export const inputWrapper = {
   position: "relative",
 };
 
-export const inputField = (isMultiline = false) => {
+export const inputField = (screen: string, isMultiline = false) => {
   const style = {
     position: "relative",
     width: "100%",
@@ -42,7 +44,7 @@ export const inputField = (isMultiline = false) => {
       opacity: 1,
       width: "100%",
       padding: "18px 14px",
-      paddingBottom: "22px",
+      paddingBottom: "18px",
       color: mainColors.white,
       background: mainColors.darkBlue,
       fontSize: "1.6rem",
@@ -73,7 +75,15 @@ export const inputField = (isMultiline = false) => {
   };
 
   if (isMultiline) {
-    style["& .MuiOutlinedInput-input"].paddingBottom = "30px";
+    style["& .MuiOutlinedInput-input"].paddingBottom = "26px";
+  }
+
+  if (screen === "mobile") {
+    style["& .MuiOutlinedInput-input"].paddingBottom = "22px";
+  }
+
+  if (screen === "mobile" && isMultiline) {
+    style["& .MuiOutlinedInput-input"].paddingBottom = "28px";
   }
 
   return style;
@@ -119,7 +129,17 @@ export const text = {
 export const saveButton = {
   width: "40px",
   height: "40px",
-  position: "absolute",
+  position: "relative",
   right: "10px",
   top: "60%",
+};
+
+export const validationMessage = {
+  fontSize: "1.4rem",
+  width: "100%",
+  textAlign: "center",
+  color: "red",
+  position: "absolute",
+  left: 0,
+  bottom: "-25px",
 };

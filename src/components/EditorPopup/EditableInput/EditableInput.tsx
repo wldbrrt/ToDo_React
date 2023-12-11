@@ -1,5 +1,5 @@
 import { Box, IconButton, TextField, Typography } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { mainColors } from "../../../ui/palette";
 import {
   inputField,
@@ -8,10 +8,13 @@ import {
   componentWrapper,
   inputTitle,
   saveButton,
+  validationMessage,
 } from "./style";
 import { getFiltredTags } from "../../../utils/getFiltredTags";
 import { SaveIcon } from "../../icons/saveIcon";
 import { EditIconButton } from "../../icons/EditIconButton";
+import { VALIDATION_MESSAGES } from "../constants";
+import { useScreenSize } from "../../../store/hooks";
 
 type EditableInputProps = {
   title: string;
@@ -19,6 +22,8 @@ type EditableInputProps = {
   setDescriptionValue: (value: string) => void;
   setTags: (value: string[]) => void;
   isExtenderEditor?: boolean;
+  isFieldEmpty: boolean;
+  setIsFieldEmpty: (value: boolean) => void;
 };
 
 export const EditableInput = ({
@@ -27,8 +32,16 @@ export const EditableInput = ({
   setDescriptionValue,
   setTags,
   isExtenderEditor,
+  isFieldEmpty,
+  setIsFieldEmpty,
 }: EditableInputProps) => {
   const [isInputActrive, setIsInputActive] = useState<boolean>(false);
+  const [isFiledTouched, setIsFieldTouched] = useState<boolean>(false);
+  const screenSize = useScreenSize();
+
+  useEffect(() => {
+    value ? setIsFieldEmpty(false) : setIsFieldEmpty(true);
+  }, [value, isFiledTouched]);
 
   const hightlightText = (text: string) => {
     const separatedlinebreaks = text
@@ -64,7 +77,7 @@ export const EditableInput = ({
         <Box sx={inputWrapper}>
           <TextField
             autoFocus
-            sx={inputField(isExtenderEditor)}
+            sx={inputField(screenSize, isExtenderEditor)}
             value={value}
             multiline={isExtenderEditor}
             onBlur={(e) => setIsInputActive(false)}
@@ -72,9 +85,10 @@ export const EditableInput = ({
               setDescriptionValue(e.target.value);
               if (isExtenderEditor) setTags(getFiltredTags(e.target.value));
             }}
-            onFocus={(e) =>
-              e.target.setSelectionRange(value.length, value.length)
-            }
+            onFocus={(e) => {
+              e.target.setSelectionRange(value.length, value.length);
+              setIsFieldTouched(true);
+            }}
           />
         </Box>
       ) : (
@@ -90,6 +104,11 @@ export const EditableInput = ({
         <IconButton sx={saveButton} onClick={(e) => setIsInputActive(true)}>
           <EditIconButton />
         </IconButton>
+      )}
+      {isFieldEmpty && isFiledTouched && (
+        <Typography sx={validationMessage}>
+          {VALIDATION_MESSAGES.IS_EMPTY}
+        </Typography>
       )}
     </Box>
   );

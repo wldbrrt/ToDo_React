@@ -121,6 +121,9 @@ export const editorAddButton = {
   "&:hover": {
     background: mainColors.green,
   },
+  "&:disabled": {
+    background: mainColors.disabled,
+  },
 };
 
 export const closeButton = {

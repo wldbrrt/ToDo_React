@@ -41,6 +41,9 @@ export const EditorPopup = ({
 }: EditorPopupProps) => {
   const debouncedValue = useDebounce(descriptionValue, 600);
   const [editorTags, setEditorTags] = useState<string[]>(tags);
+  const [isTitleFieldEmpty, setIsTitleFieldEmpty] = useState<boolean>(false);
+  const [isDescriptionFieldEmpty, setisDescriptionFieldEmpty] =
+    useState<boolean>(false);
   const screenSize = useScreenSize();
 
   useEffect(() => {
@@ -63,6 +66,8 @@ export const EditorPopup = ({
           value={titleValue}
           setTags={setTags}
           setDescriptionValue={setTitleValue}
+          isFieldEmpty={isTitleFieldEmpty}
+          setIsFieldEmpty={setIsTitleFieldEmpty}
         />
 
         <EditableInput
@@ -71,10 +76,13 @@ export const EditorPopup = ({
           setTags={setTags}
           setDescriptionValue={setDescriptionValue}
           isExtenderEditor={true}
+          isFieldEmpty={isDescriptionFieldEmpty}
+          setIsFieldEmpty={setisDescriptionFieldEmpty}
         />
         <FilterButtonsGroup tags={editorTags} />
         <Button
           sx={editorAddButton}
+          disabled={isTitleFieldEmpty || isDescriptionFieldEmpty}
           onClick={() => {
             setTags(getFiltredTags(descriptionValue));
             onClickHandler();
