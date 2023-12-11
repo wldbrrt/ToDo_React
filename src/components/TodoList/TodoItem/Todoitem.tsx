@@ -8,6 +8,7 @@ import {
   todoWrapper,
   todoContent,
   todoItemWrapper,
+  tooltipMessage,
 } from "./style";
 import { Checkboxicon } from "../../icons/checkbox";
 import { CheckboxActiveicon } from "../../icons/checkboxActive";
@@ -24,7 +25,11 @@ import {
   setTodoContent,
   setTodoStatus,
 } from "../../../store/slices/todos";
-import { EDIT_POPUP_BUTTON_TITLE, EDIT_POPUP_TITLE } from "./constants";
+import {
+  EDIT_POPUP_BUTTON_TITLE,
+  EDIT_POPUP_TITLE,
+  TOOLTIP_MESSAGE,
+} from "./constants";
 import React from "react";
 import { mainColors } from "../../../ui/palette";
 
@@ -47,6 +52,7 @@ export const Todoitem = ({
   const [titleValue, setTitleValue] = useState<string>(title);
   const [descriptionValue, setDescriptionValue] = useState<string>(content);
   const [tagsArr, setTagsArr] = useState<string[]>(tags);
+  const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>();
 
   const toggleModal = () => {
     setIsModalOpen((value) => !value);
@@ -66,7 +72,13 @@ export const Todoitem = ({
   };
 
   const deleteNote = () => {
-    dispatch(removeTodo(id));
+    if (isCompleted) {
+      dispatch(removeTodo(id));
+      return;
+    } else {
+      setIsTooltipVisible(true);
+      setTimeout(() => setIsTooltipVisible(false), 3000);
+    }
   };
 
   const toggleCompleted = (value: boolean) => {
@@ -119,6 +131,7 @@ export const Todoitem = ({
           <IconButton sx={todoDelete} onClick={deleteNote}>
             <DeleteIconButton />
           </IconButton>
+          <Box sx={tooltipMessage(isTooltipVisible)}>{TOOLTIP_MESSAGE}</Box>
         </Box>
       </Box>
       <Typography sx={todoContent(isCompleted)}>

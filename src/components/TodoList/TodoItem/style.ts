@@ -1,3 +1,4 @@
+import { positions } from "@mui/system";
 import { mainColors } from "../../../ui/palette";
 
 export const todoItem = {
@@ -53,7 +54,9 @@ export const todoContent = (isCompleted = false) => {
   return styles;
 };
 
-export const todoWrapper = {};
+export const todoWrapper = {
+  position: "relative",
+};
 
 export const todoEdit = {
   width: "40px",
@@ -76,4 +79,25 @@ export const todoToggleActive = {
   transition: "300ms",
   width: "40px",
   height: "40px",
+};
+
+export const tooltipMessage = (isTooltipVisible = false) => {
+  const style = {
+    color: mainColors.white,
+    position: "absolute",
+    right: 0,
+    padding: "10px 10px",
+    opacity: 0,
+    transition: "300ms",
+    minWidth: "150px",
+    background: mainColors.backgroundBlue,
+    border: `solid 2px ${mainColors.green}`,
+    borderRadius: "10px",
+  };
+
+  if (isTooltipVisible) {
+    style.opacity = 1;
+  }
+
+  return style;
 };
