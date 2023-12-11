@@ -4,6 +4,7 @@ export type TTodo = {
   content: string;
   tags: string[];
   isCompleted: boolean;
+  date: Date;
 };
 
 export type TTodos = {

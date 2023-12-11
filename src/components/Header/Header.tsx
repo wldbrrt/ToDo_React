@@ -36,6 +36,7 @@ export const Header = () => {
         content: descriptionValue,
         tags: tags,
         isCompleted: false,
+        date: new Date(),
       })
     );
     setDescriptionValue("");

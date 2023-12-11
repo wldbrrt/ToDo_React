@@ -53,3 +53,9 @@ export const noResulttitle = {
   color: mainColors.white,
   fontSize: "4rem",
 };
+
+export const todoDateStyles = {
+  color: mainColors.white,
+  fontSize: "3rem",
+  padding: "15px 0",
+};

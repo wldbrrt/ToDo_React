@@ -9,6 +9,8 @@ import {
   todoContent,
   todoItemWrapper,
   tooltipMessage,
+  tagsWrapper,
+  todoDate,
 } from "./style";
 import { Checkboxicon } from "../../icons/checkbox";
 import { CheckboxActiveicon } from "../../icons/checkboxActive";
@@ -19,7 +21,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { FilterButtonsGroup } from "../../Header/FilterButtonsGroup/FilterButtonsGroup";
 import { EditorPopup } from "../../EditorPopup/EditorPopup";
-import { useAppDispatch, useScreenSize } from "../../../store/hooks";
+import { useAppDispatch } from "../../../store/hooks";
 import {
   removeTodo,
   setTodoContent,
@@ -38,6 +40,7 @@ type TTodoitem = {
   isCompleted: boolean;
   id: number;
   tags: string[];
+  date: Date;
 };
 
 export const Todoitem = ({
@@ -46,6 +49,7 @@ export const Todoitem = ({
   isCompleted,
   id,
   tags,
+  date,
 }: TTodoitem) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [titleValue, setTitleValue] = useState<string>(title);
@@ -136,7 +140,14 @@ export const Todoitem = ({
       <Typography sx={todoContent(isCompleted)}>
         {hightlightText(content).map((el) => el)}
       </Typography>
-      <FilterButtonsGroup tags={tags} />
+      <Box sx={tagsWrapper}>
+        <FilterButtonsGroup tags={tags} />
+        {date && (
+          <Typography sx={todoDate}>{`${new Date(date).getDate()}.${
+            new Date(date).getMonth() + 1
+          }.${new Date(date).getFullYear()}`}</Typography>
+        )}
+      </Box>
 
       {isModalOpen &&
         createPortal(

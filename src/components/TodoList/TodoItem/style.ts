@@ -5,13 +5,14 @@ export const todoItem = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  padding: "10px 30px",
+  padding: "10px 10px",
 };
 
 export const todoItemWrapper = {
   width: "100%",
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "flex-start",
 };
 
 export const todoCheckbox = {
@@ -102,4 +103,16 @@ export const tooltipMessage = (isTooltipVisible = false) => {
   }
 
   return style;
+};
+
+export const tagsWrapper = {
+  width: "100%",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-end",
+};
+
+export const todoDate = {
+  color: mainColors.green,
+  height: "fit-content",
 };
