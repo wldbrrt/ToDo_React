@@ -1,5 +1,5 @@
 import { Button, Box } from "@mui/material";
-import { activeButton, button, buttonGroup } from "./style";
+import { button, buttonGroup } from "./style";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

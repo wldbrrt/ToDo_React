@@ -5,13 +5,12 @@ import {
   POPUP_BUTTON_TITLE,
   POPUP_TITLE_CREATE,
 } from "./constants";
-import { SearchBar } from "./SearchBar/SearchBar";
 import { addButton, header, title, titleWrapper } from "./style";
 import { FilterButtonsGroup } from "./FilterButtonsGroup/FilterButtonsGroup";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { EditorPopup } from "../EditorPopup/EditorPopup";
-import { useAppDispatch, useTodos } from "../../store/hooks";
+import { useAppDispatch, useScreenSize, useTodos } from "../../store/hooks";
 import { addTodo } from "../../store/slices/todos";
 import { storeTodosInLocalStorage } from "../../utils/storeInLocalstorage";
 
@@ -20,6 +19,7 @@ export const Header = () => {
   const [titleValue, setTitleValue] = useState<string>("");
   const [descriptionValue, setDescriptionValue] = useState<string>("");
   const [tags, setTags] = useState<string[]>([]);
+  const screenSize = useScreenSize();
 
   const { id, todos, count } = useTodos();
 
@@ -54,7 +54,7 @@ export const Header = () => {
   };
 
   return (
-    <Box sx={header}>
+    <Box sx={header(screenSize)}>
       <Box sx={titleWrapper}>
         <Typography sx={title}>{MAIN_TITLE}</Typography>
         <Button sx={addButton} onClick={toggleModal}>

@@ -1,4 +1,3 @@
-import { positions } from "@mui/system";
 import { mainColors } from "../../../ui/palette";
 
 export const todoItem = {
@@ -22,9 +21,10 @@ export const todoCheckbox = {
 
 export const todoTitle = (isCompleted = false) => {
   const styles = {
-    color: mainColors.white,
+    color: mainColors.green,
     minWidth: "10%",
     textDecoration: "none",
+    fontSize: "2rem",
   };
 
   if (isCompleted) {
@@ -44,6 +44,7 @@ export const todoContent = (isCompleted = false) => {
     transition: "300ms",
     width: "100%",
     textDecoration: "none",
+    fontSize: "1.6rem",
   };
 
   if (isCompleted) {
@@ -93,6 +94,7 @@ export const tooltipMessage = (isTooltipVisible = false) => {
     background: mainColors.backgroundBlue,
     border: `solid 2px ${mainColors.green}`,
     borderRadius: "10px",
+    fontSize: "1.6rem",
   };
 
   if (isTooltipVisible) {

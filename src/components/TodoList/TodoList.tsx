@@ -1,13 +1,14 @@
 import { Box, Typography } from "@mui/material";
 import { todoList, noResulttitle } from "./style";
 import { Todoitem } from "./TodoItem/Todoitem";
-import { useTodos } from "../../store/hooks";
+import { useScreenSize, useTodos } from "../../store/hooks";
 import { useSearchParams } from "react-router-dom";
 import { TODOLIST_NO_CONTENT } from "./TodoItem/constants";
 
 export const TodoList = () => {
   const [searchParams] = useSearchParams();
   const { todos } = useTodos();
+  const screenSize = useScreenSize();
   const filterParam = searchParams.get("filter");
 
   const filteredTodos = filterParam
@@ -20,7 +21,7 @@ export const TodoList = () => {
   const data = filteredTodos;
 
   return (
-    <Box sx={todoList}>
+    <Box sx={todoList(screenSize)}>
       {!data.length && (
         <Typography sx={noResulttitle}>{TODOLIST_NO_CONTENT}</Typography>
       )}

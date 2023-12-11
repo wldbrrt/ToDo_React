@@ -5,11 +5,12 @@ import {
   editorTitle,
   editorAddButton,
   closeButton,
+  titleWrapapper,
 } from "./style";
 import { POPUP_NOTE_DESCRIPTION, POPUP_NOTE_TITLE } from "./constants";
 import { FilterButtonsGroup } from "../Header/FilterButtonsGroup/FilterButtonsGroup";
 import { useEffect, useState } from "react";
-import { useDebounce } from "../../store/hooks";
+import { useDebounce, useScreenSize } from "../../store/hooks";
 import React from "react";
 import { EditableInput } from "./EditableInput/EditableInput";
 import { getFiltredTags } from "../../utils/getFiltredTags";
@@ -40,6 +41,7 @@ export const EditorPopup = ({
 }: EditorPopupProps) => {
   const debouncedValue = useDebounce(descriptionValue, 600);
   const [editorTags, setEditorTags] = useState<string[]>(tags);
+  const screenSize = useScreenSize();
 
   useEffect(() => {
     setEditorTags(getFiltredTags(descriptionValue));
@@ -48,11 +50,13 @@ export const EditorPopup = ({
   return (
     <>
       <Box sx={editorBackground}></Box>
-      <Box sx={editorWrapper}>
-        <Typography sx={editorTitle}>{title}</Typography>
-        <Button sx={closeButton} onClick={(e) => closeHandler(false)}>
-          X
-        </Button>
+      <Box sx={editorWrapper(screenSize)}>
+        <Box sx={titleWrapapper}>
+          <Typography sx={editorTitle}>{title}</Typography>
+          <Button sx={closeButton} onClick={(e) => closeHandler(false)}>
+            X
+          </Button>
+        </Box>
 
         <EditableInput
           title={POPUP_NOTE_TITLE}

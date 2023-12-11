@@ -19,7 +19,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { FilterButtonsGroup } from "../../Header/FilterButtonsGroup/FilterButtonsGroup";
 import { EditorPopup } from "../../EditorPopup/EditorPopup";
-import { useAppDispatch } from "../../../store/hooks";
+import { useAppDispatch, useScreenSize } from "../../../store/hooks";
 import {
   removeTodo,
   setTodoContent,
@@ -31,7 +31,6 @@ import {
   TOOLTIP_MESSAGE,
 } from "./constants";
 import React from "react";
-import { mainColors } from "../../../ui/palette";
 
 type TTodoitem = {
   title: string;
@@ -53,6 +52,8 @@ export const Todoitem = ({
   const [descriptionValue, setDescriptionValue] = useState<string>(content);
   const [tagsArr, setTagsArr] = useState<string[]>(tags);
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>();
+  const windowSize = useScreenSize();
+  console.log(windowSize);
 
   const toggleModal = () => {
     setIsModalOpen((value) => !value);

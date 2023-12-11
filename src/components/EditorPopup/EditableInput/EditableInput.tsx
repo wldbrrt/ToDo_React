@@ -46,7 +46,9 @@ export const EditableInput = ({
           {index > 0 && " "}
           {el === "\n" && <br />}
           {el[0] === "#" ? (
-            <span style={{ color: mainColors.green }}>{el}</span>
+            <span style={{ color: mainColors.green, fontSize: "1.6rem" }}>
+              {el}
+            </span>
           ) : (
             el
           )}
@@ -62,7 +64,7 @@ export const EditableInput = ({
         <Box sx={inputWrapper}>
           <TextField
             autoFocus
-            sx={inputField}
+            sx={inputField(isExtenderEditor)}
             value={value}
             multiline={isExtenderEditor}
             onBlur={(e) => setIsInputActive(false)}

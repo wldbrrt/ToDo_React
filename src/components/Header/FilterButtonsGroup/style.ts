@@ -3,6 +3,7 @@ import { mainColors } from "../../../ui/palette";
 export const buttonGroup = {
   display: "flex",
   gap: "5px",
+  flexWrap: "wrap",
   width: "80%",
 };
 
@@ -12,7 +13,7 @@ export const button = (isActive: boolean, isFilter = false) => {
     border: `${mainColors.green} solid 2px`,
     borderRadius: "15px",
     color: mainColors.white,
-    fontSize: "10px",
+    fontSize: "1rem",
     padding: "0 10 0 10 ",
     minWidth: "10px",
     "&:active": {
@@ -41,7 +42,7 @@ export const activeButton = {
   border: `${mainColors.green} solid 2px`,
   borderRadius: "15px",
   color: mainColors.white,
-  fontSize: "10px",
+  fontSize: "1rem",
   padding: "0 0 0 0 ",
   "&:active": {
     background: mainColors.green,

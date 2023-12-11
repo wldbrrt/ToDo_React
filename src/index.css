@@ -2,6 +2,7 @@
   margin: 0 0;
   padding: 0 0;
   box-sizing: border-box;
+  font-size: 10px;
 }
 
 html {
@@ -10,4 +11,10 @@ html {
 
 body {
   background-color: #1d1d2a;
+}
+
+@media (max-width: 767px) {
+  * {
+    font-size: 8px;
+  }
 }

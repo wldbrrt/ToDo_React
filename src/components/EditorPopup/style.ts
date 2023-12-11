@@ -10,30 +10,52 @@ export const editorBackground = {
   opacity: 0.7,
 };
 
-export const editorWrapper = {
-  width: " 50%",
-  minHeight: "80%",
-  background: mainColors.backgroundBlue,
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  margin: "0 auto",
-  zIndex: 5,
-  border: `${mainColors.green} solid 3px`,
-  borderRadius: "30px",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  gap: "40px",
-  padding: "30px 0",
+export const editorWrapper = (screen: string) => {
+  const style = {
+    width: "50vw",
+    minHeight: "80vh",
+    background: mainColors.backgroundBlue,
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    margin: "0 auto",
+    zIndex: 5,
+    border: `${mainColors.green} solid 3px`,
+    borderRadius: "30px",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "40px",
+    padding: "30px 0",
+  };
+
+  switch (screen) {
+    case "tablet": {
+      style.width = "60vw";
+      break;
+    }
+    case "mobile": {
+      style.width = "90vw";
+      style.minHeight = "90vh";
+      break;
+    }
+  }
+
+  return style;
 };
 
 export const editorTitle = {
   color: mainColors.white,
-  fontSize: "35px",
+  fontSize: "3.5rem",
   textAlign: "center",
   textTransform: "uppercase",
+};
+
+export const titleWrapapper = {
+  display: "flex",
+  width: "80%",
+  justifyContent: "space-between",
 };
 
 export const todoTitle = {
@@ -90,7 +112,7 @@ export const descriptionText = {
 export const editorAddButton = {
   borderRadius: "20px",
   minWidth: "85px",
-  fontSize: "40px",
+  fontSize: "4rem",
   padding: "5 5",
   position: "relative",
   marginTop: "auto",
@@ -102,11 +124,8 @@ export const editorAddButton = {
 };
 
 export const closeButton = {
-  position: "absolute",
   color: mainColors.green,
-  fontSize: "40px",
-  right: "2%",
-  top: "10px",
+  fontSize: "4rem",
   "&:hover": {
     color: mainColors.white,
     background: "none",

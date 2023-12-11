@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "./store";
+import { useMediaQuery } from "@mui/material";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -37,3 +38,15 @@ export function useDebounce<T>(value: T, delay: number) {
 
   return debouncedValue;
 }
+
+export const useScreenSize = (): "desctop" | "tablet" | "mobile" => {
+  const desctop = useMediaQuery("(min-width:1200px)");
+  const tablets = useMediaQuery("(min-width:768px)");
+  const mobile = useMediaQuery("(max-width:768px)");
+
+  if (desctop) return "desctop";
+  if (tablets) return "tablet";
+  if (mobile) return "mobile";
+
+  return "desctop";
+};
