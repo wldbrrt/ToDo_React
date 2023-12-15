@@ -46,17 +46,18 @@ export const TodoList = () => {
       {filtredByDaysData.reverse().map((e, ind) => {
         const currentDate = getFormatDate(new Date().toISOString());
         const todoDate = getFormatDate(new Date(e[0].date).toISOString());
-        const dateString = `${new Date(e[0].date).getDate()}.${
+        const dateString = `${new Date(e[0].date).getDate()}/${
           new Date(e[0].date).getMonth() + 1
-        }.${new Date(e[0].date).getFullYear()}`;
+        }/${new Date(e[0].date).getFullYear()}`;
 
         return (
           <>
-            <Typography sx={todoDateStyles}>
+            <Typography key={ind} sx={todoDateStyles}>
               {currentDate === todoDate ? "Today" : dateString}
             </Typography>
             {e.reverse().map((todo) => (
               <Todoitem
+                key={todo.date.toString()}
                 title={todo.title}
                 content={todo.content}
                 isCompleted={todo.isCompleted}
